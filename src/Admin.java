@@ -52,9 +52,33 @@ public class Admin {
                 Employee manager = new Manager(uniId,NAME,AGE,teamSize);
 
             } else if (department.equals("B")) {
-                Developer developer = new Developer();
+
+                System.out.println("Enter the Unique id number : ");
+                uniId = input.nextInt();
+                input.nextLine();
+
+                System.out.println("Enter the name : ");
+                NAME = input.nextLine();
+
+                System.out.println("Enter the age : ");
+                AGE=input.nextInt();
+                input.nextLine();
+
+                Developer developer = new Developer(uniId,NAME,AGE);
             } else if (department.equals("C")) {
-                //Intern intern = new Intern();
+
+                System.out.println("Enter the Unique id number : ");
+                uniId = input.nextInt();
+                input.nextLine();
+
+                System.out.println("Enter the name : ");
+                NAME = input.nextLine();
+
+                System.out.println("Enter the age : ");
+                AGE=input.nextInt();
+                input.nextLine();
+
+                Intern intern = new Intern(uniId,NAME,AGE);
             }else {
                 System.out.println("Invalid Input");
             }

@@ -18,13 +18,41 @@ public class Admin {
 
         //Implementing choice
         if (1 == choice){
-            System.out.print("\n Which Department :\n A -> Management \n B-> Developer \n C -> Intern \n (type A/B/C) : ");
+            System.out.print("\n Which Department :\n A -> Management(Can Add Manager) \n" +
+                    " B-> Developer(Can add developer) \n C -> Intern(Can add Intern) \n (type A/B/C) : ");
+
+            //Local input variable
+            int uniId;
+            String NAME;
+            int AGE;
+
+
             //Department selection
             String department = input.nextLine().toUpperCase();
             if (department.equals("A")){
-                Employee manager = new Manager(00,"das",1,3,3);
+                // Team size initialisation locally
+                int teamSize;
+
+                Scanner input1 = new Scanner(System.in);
+                System.out.println("Enter the Unique id number : ");
+                uniId = input1.nextInt();
+                input1.nextLine();
+
+                System.out.println("Enter the name : ");
+                NAME = input1.nextLine();
+
+                System.out.println("Enter the age : ");
+                AGE=input1.nextInt();
+                input1.nextLine();
+
+                System.out.println("Enter the Team Size Manager will handle : ");
+                teamSize = input.nextInt();
+                input.nextLine();
+
+                Employee manager = new Manager(uniId,NAME,AGE,teamSize);
+
             } else if (department.equals("B")) {
-                //Developer developer = new Developer();
+                Developer developer = new Developer();
             } else if (department.equals("C")) {
                 //Intern intern = new Intern();
             }else {

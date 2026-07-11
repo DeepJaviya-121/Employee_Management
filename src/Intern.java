@@ -1,9 +1,13 @@
 public class Intern extends Employee{
 
-    double stipend;
+    double stipend = 12000;
+
+    public Intern(int id, String name, int age){
+        super(id,name,age);
+    }
 
     @Override
     double showSalary(){
-        return 12000.00;
+        return stipend;
     }
 }

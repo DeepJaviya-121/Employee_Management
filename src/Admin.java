@@ -84,6 +84,7 @@ public class Admin {
                 input.nextLine();
 
                 Intern intern = new Intern(uniId,NAME,AGE);
+                intern.addIntern();
             }else {
                 System.out.print("Invalid Input");
             }

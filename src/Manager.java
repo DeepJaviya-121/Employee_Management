@@ -35,8 +35,8 @@ public class Manager extends Employee{
         for(Integer UID : ManagerMap.keySet()){
             String Mname = ManagerMap.get(UID);
 
-            System.out.println("Manager ID = " + UID);
-            System.out.println("Manager Name = " + Mname);
+            System.out.println("Manager (ID : Name) is : ");
+            System.out.println(UID + " : " + Mname);
         }
     }
 

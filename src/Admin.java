@@ -54,7 +54,6 @@ public class Admin {
 
                 Manager manager = new Manager(uniId,NAME,AGE,teamSize);
                 manager.addManager();
-                manager.showManager();
 
             } else if (department.equals("B")) {
 
@@ -70,6 +69,7 @@ public class Admin {
                 input.nextLine();
 
                 Developer developer = new Developer(uniId,NAME,AGE);
+                developer.addDeveloper();
             } else if (department.equals("C")) {
 
                 System.out.print("Enter the Unique id number : ");

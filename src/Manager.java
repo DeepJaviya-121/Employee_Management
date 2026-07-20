@@ -1,6 +1,9 @@
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Manager extends Employee{
+
+    Scanner input = new Scanner(System.in);
 
     int teamSize;
     double bonus = 0.30 ;
@@ -10,12 +13,15 @@ public class Manager extends Employee{
     int ID = getId() ;
     String Name = getName();
 
+    // Constructor
+    public Manager(){};
     public Manager(int id,String name,int age,int teamSize){
         super(id,name,age);
         this.teamSize = teamSize;
     }
 
-    HashMap<Integer,String> ManagerMap = new HashMap<>();
+    // static because can be used for multiple object of this class
+    static HashMap<Integer,String> ManagerMap = new HashMap<>();
 
     @Override
     double showSalary(){
@@ -27,7 +33,21 @@ public class Manager extends Employee{
         ManagerMap.put(ID,Name);
     }
 
-    public void CheckID(){
+    public void updateName(int checkID){
+
+        for (int key : ManagerMap.keySet()){
+            if (key == checkID){
+                String name = ManagerMap.get(key);
+                System.out.println("ID : " + key + " NAME : " + name);
+                System.out.print("Enter the name you want to Update : ");
+                String updateName = input.nextLine();
+                ManagerMap.put(key,updateName);
+
+            }
+            else {
+                System.out.print("Invalid Input");
+            }
+        }
 
     }
     // UID = unique ID. Mname - manager name

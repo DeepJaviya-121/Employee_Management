@@ -6,7 +6,10 @@ public abstract class Employee {
     double baseSalary = 25000;
     String department;
 
+    public Employee(){};
+
     public Employee(int id,String name,int age){
+        this();
         this.id = id;
         this.name = name;
         this.age = age;

@@ -7,7 +7,7 @@ public class Manager extends Employee{
 
     int teamSize;
     double bonus = 0.30 ;
-    double salary;
+    double salary = 50000;
 
     //for storing ID and NAME
     int ID = getId() ;
@@ -48,8 +48,23 @@ public class Manager extends Employee{
                 System.out.print("Invalid Input");
             }
         }
-
     }
+
+    // Remove Employee
+    public void removeName(int checkID){
+        for (int key : ManagerMap.keySet()){
+            if (key == checkID){
+                String name = ManagerMap.get(key);
+                System.out.println("ID : " + key + " NAME : " + name + " is removed.");
+                ManagerMap.remove(key,name);
+
+            }
+            else {
+                System.out.print("Invalid Input");
+            }
+        }
+    }
+
     // UID = unique ID. Mname - manager name
     public void showManager(){
         for(Integer UID : ManagerMap.keySet()){

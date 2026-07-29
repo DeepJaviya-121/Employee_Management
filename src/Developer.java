@@ -6,7 +6,7 @@ public class Developer extends Employee{
     Scanner input = new Scanner(System.in);
 
     double projectBonus = 0.20;
-    double salary;
+    double salary = 20000;
 
     // Constructor
     public Developer(){};
@@ -35,6 +35,21 @@ public class Developer extends Employee{
                 DeveloperMap.put(key, updateName);
 
             } else {
+                System.out.print("Invalid Input");
+            }
+        }
+    }
+
+    // Remove employee
+    public void removeName(int checkID){
+        for (int key : DeveloperMap.keySet()){
+            if (key == checkID){
+                String name = DeveloperMap.get(key);
+                System.out.println("ID : " + key + " NAME : " + name + " is removed.");
+                DeveloperMap.remove(key,name);
+
+            }
+            else {
                 System.out.print("Invalid Input");
             }
         }

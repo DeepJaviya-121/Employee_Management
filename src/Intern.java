@@ -53,4 +53,19 @@ public class Intern extends Employee {
             }
         }
     }
+
+    // Remove employee
+    public void removeName(int checkID){
+        for (int key : InternMap.keySet()){
+            if (key == checkID){
+                String name = InternMap.get(key);
+                System.out.println("ID : " + key + " NAME : " + name + " is removed.");
+                InternMap.remove(key,name);
+
+            }
+            else {
+                System.out.print("Invalid Input");
+            }
+        }
+    }
 }

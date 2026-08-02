@@ -11,16 +11,16 @@ public class Admin {
 
         //Introduction Statement .
         System.out.println("___I am the Admin___");
-        System.out.println("1. Add Employee");
-        System.out.println("2. Update Employee Details");
-        System.out.println("3. Calculate Salary");
-        System.out.println("4. Remove Employee");
-        System.out.println("5. To End Program");
 
         int [] options = {1,2,3,4,5};
         int choice;
         do {
 
+            System.out.println("1. Add Employee");
+            System.out.println("2. Update Employee Details");
+            System.out.println("3. Calculate Salary");
+            System.out.println("4. Remove Employee");
+            System.out.println("5. To End Program");
             //Implementing choice
             System.out.print("\nEnter your choice : ");
 

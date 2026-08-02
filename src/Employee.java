@@ -4,7 +4,6 @@ public abstract class Employee {
     int age;
     String name;
     double baseSalary = 25000;
-    String department;
 
     public Employee(){};
 

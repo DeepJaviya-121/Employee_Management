@@ -23,9 +23,10 @@ public class Manager extends Employee{
     // static because can be used for multiple object of this class
     static HashMap<Integer,String> ManagerMap = new HashMap<>();
 
+    // Salary
     @Override
     double showSalary(){
-        salary = baseSalary*bonus;
+        double amount = baseSalary*bonus;
         return salary+baseSalary;
     }
 

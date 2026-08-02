@@ -24,6 +24,7 @@ public class Developer extends Employee{
         DeveloperMap.put(ID,Name);
     }
 
+    // Update Empolyee Name
     public void updateName(int checkID) {
 
         for (int key : DeveloperMap.keySet()) {
@@ -68,7 +69,7 @@ public class Developer extends Employee{
     // Show Salary Method
     @Override
     double showSalary(){
-        salary = baseSalary*projectBonus;
+        double amount = baseSalary*projectBonus;
         return salary+baseSalary;
     }
 

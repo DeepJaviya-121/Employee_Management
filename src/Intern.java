@@ -27,6 +27,7 @@ public class Intern extends Employee {
         InternMap.put(ID, Name);
     }
 
+    // show intern names
     public void showIntern() {
         for (Integer IID : InternMap.keySet()) {
             String Iname = InternMap.get(IID);
@@ -38,6 +39,7 @@ public class Intern extends Employee {
 
     }
 
+    // update intern name
     public void updateName(int checkID) {
 
         for (int key : InternMap.keySet()) {

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Admin {
@@ -8,12 +9,15 @@ public class Admin {
         Manager management = new Manager();
         Developer development = new Developer();
         Intern intern = new Intern();
+        boolean cut = true;
+
+
+        // user selection.
+        int choice ;
 
         //Introduction Statement .
         System.out.println("___I am the Admin___");
 
-        int [] options = {1,2,3,4,5};
-        int choice;
         do {
 
             System.out.println("1. Add Employee");
@@ -23,191 +27,238 @@ public class Admin {
             System.out.println("5. To End Program");
             //Implementing choice
             System.out.print("\nEnter your choice : ");
+            boolean loopBreaker = true;
 
             //User's Choice
 
             try {
                 choice = input.nextInt();
                 input.nextLine();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+
+                if (choice > 5 || choice < 1) throw new InputException();
+
+            }catch (InputMismatchException p){
+                System.out.println("Please enter a valid Integer within 1-5");
+                return;
+            }
+            catch (InputException e) {
+                System.out.println(e);
+                return;
             }
 
-
+            //Add employee
             if (1 == choice) {
-                System.out.print("""
-                         Which Department :
-                         A -> Management(Can Add Manager)
-                         B-> Developer(Can add developer)
-                         C -> Intern(Can add Intern)
-                         (type A/B/C) :\s""");
-                //Local input variable
-                int uniId;
-                String NAME;
-                int AGE;
 
-                //Department selection
-                String department = input.nextLine().toUpperCase();
-                switch (department) {
-                    case "A" -> {
-                        // Team size initialization locally
-                        int teamSize;
+                do {
+                    System.out.print("""
+                            Which Department :
+                            A -> Management(Can Add Manager)
+                            B-> Developer(Can add developer)
+                            C -> Intern(Can add Intern)
+                            D -> Go back (go to the previous page)
+                            (type A/B/C/D) :\s""");
+                    //Local input variable
+                    int uniId;
+                    String NAME;
+                    int AGE;
 
-                        Scanner input1 = new Scanner(System.in);
-                        System.out.print("Enter the Unique id number : ");
-                        uniId = input1.nextInt();
-                        input1.nextLine();
 
-                        System.out.print("Enter the name : ");
-                        NAME = input1.nextLine();
+                    //Department selection
+                    String department = input.nextLine().toUpperCase();
+                    switch (department) {
+                        case "A" -> {
+                            // Team size initialization locally
+                            int teamSize;
 
-                        System.out.print("Enter the age : ");
-                        AGE = input1.nextInt();
-                        input1.nextLine();
+                            Scanner input1 = new Scanner(System.in);
+                            System.out.print("Enter the Unique id number : ");
+                            uniId = input1.nextInt();
+                            input1.nextLine();
 
-                        System.out.print("Enter the Team Size Manager will handle : ");
-                        teamSize = input.nextInt();
-                        input.nextLine();
+                            System.out.print("Enter the name : ");
+                            NAME = input1.nextLine();
 
-                        Manager manager = new Manager(uniId, NAME, AGE, teamSize);
-                        manager.addManager();
+                            System.out.print("Enter the age : ");
+                            AGE = input1.nextInt();
+                            input1.nextLine();
+
+                            System.out.print("Enter the Team Size Manager will handle : ");
+                            teamSize = input.nextInt();
+                            input.nextLine();
+
+                            Manager manager = new Manager(uniId, NAME, AGE, teamSize);
+                            manager.addManager();
+                        }
+                        case "B" -> {
+
+                            System.out.print("Enter the Unique id number : ");
+                            uniId = input.nextInt();
+                            input.nextLine();
+
+                            System.out.print("Enter the name : ");
+                            NAME = input.nextLine();
+
+                            System.out.print("Enter the age : ");
+                            AGE = input.nextInt();
+                            input.nextLine();
+
+                            Developer developer = new Developer(uniId, NAME, AGE);
+                            developer.addDeveloper();
+                        }
+                        case "C" -> {
+
+                            System.out.print("Enter the Unique id number : ");
+                            uniId = input.nextInt();
+                            input.nextLine();
+
+                            System.out.print("Enter the name : ");
+                            NAME = input.nextLine();
+
+                            System.out.print("Enter the age : ");
+                            AGE = input.nextInt();
+                            input.nextLine();
+
+                            Intern Intern = new Intern(uniId, NAME, AGE);
+                            Intern.addIntern();
+                        }
+                        case "D" -> {
+                            System.out.println("\n");
+                            loopBreaker = false;
+                        }
+                        // add a loop breaker here to stop code when error comes.
+                        default -> System.out.print("Invalid Input");
                     }
-                    case "B" -> {
-
-                        System.out.print("Enter the Unique id number : ");
-                        uniId = input.nextInt();
-                        input.nextLine();
-
-                        System.out.print("Enter the name : ");
-                        NAME = input.nextLine();
-
-                        System.out.print("Enter the age : ");
-                        AGE = input.nextInt();
-                        input.nextLine();
-
-                        Developer developer = new Developer(uniId, NAME, AGE);
-                        developer.addDeveloper();
-                    }
-                    case "C" -> {
-
-                        System.out.print("Enter the Unique id number : ");
-                        uniId = input.nextInt();
-                        input.nextLine();
-
-                        System.out.print("Enter the name : ");
-                        NAME = input.nextLine();
-
-                        System.out.print("Enter the age : ");
-                        AGE = input.nextInt();
-                        input.nextLine();
-
-                        Intern Intern = new Intern(uniId, NAME, AGE);
-                        Intern.addIntern();
-                    }
-                    // add a loop breaker here to stop code when error comes.
-                    default -> System.out.print("Invalid Input");
-                }
-            }
-            else if (2 == choice) {
-
-                System.out.print(""" 
-                        Which Department :
-                        A : Management
-                        B : Development
-                        C : Intern
-                        type -> (A/B/C) :\s
-                        """);
-
-                String change = input.nextLine().toUpperCase();
-                switch (change) {
-                    case "A" -> {
-
-                        System.out.print("Enter the ID of Manager you want to update :");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-
-                        management.updateName(checkID);
-
-                        management.showManager();
-
-                    }
-                    case "B" -> {
-
-                        System.out.print("Enter the ID of Developer you want to update :");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-
-                        development.updateName(checkID);
-                        development.showDeveloper();
-                    }
-                    case "C" -> {
-
-                        System.out.print("Enter the ID of Intern you want to update :");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-
-                        intern.updateName(checkID);
-                        intern.showIntern();
-                    }
-                    // add a loop breaker here to stop code when error comes.
-                    default -> System.out.println("Invalid Input");
-                }
-            }
-            else if (3 == choice) {
-
-                System.out.print(""" 
-                        Which department Salary you want to calculate :
-                        A -> Management
-                        B -> Development
-                        C -> Intern
-                        Type your Choice :\s
-                        """);
-
-                String Select = input.nextLine().toUpperCase();
-                switch (Select) {
-                    case "A" -> System.out.println("The Management Department Salary is : " + management.showSalary());
-                    case "B" -> System.out.println("The Development Department Salary is : " + development.showSalary());
-                    case "C" -> System.out.println("The Intern Department Salary is : " + intern.showSalary());
-                    default -> System.out.println("Invalid input");
-                }
-            }
-            else if (4 == choice) {
-                System.out.print("""
-                        Enter the department You want to remove employee from :
-                        A -> Management
-                        B -> Development
-                        C -> Intern
-                        Type your Choice :\s
-                        """);
-
-                String Select = input.nextLine().toUpperCase();
-                switch (Select) {
-                    case "A" -> {
-
-                        System.out.println("Enter the ID number : ");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-                        management.removeName(checkID);
-
-                    }
-                    case "B" -> {
-
-                        System.out.println("Enter the ID number : ");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-                        development.removeName(checkID);
-
-                    }
-                    case "C" -> {
-                        System.out.println("Enter the ID number : ");
-                        int checkID = input.nextInt();
-                        input.nextLine();
-                        intern.removeName(checkID);
-                    }
-                    default -> System.out.println("Invalid Input");
-                }
+                }while (loopBreaker);
             }
 
-        } while (5 != choice);
+            //U[date employee
+            if (2 == choice) {
+                do {
+                    System.out.print("""
+                            Which Department :
+                            A : Management
+                            B : Development
+                            C : Intern
+                            D : Go back
+                            type -> (A/B/C/D) :\s
+                            """);
+
+                    String change = input.nextLine().toUpperCase();
+                    switch (change) {
+                        case "A" -> {
+
+                            System.out.print("Enter the ID of Manager you want to update :");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+
+                            management.updateName(checkID);
+
+                            management.showManager();
+
+                        }
+                        case "B" -> {
+
+                            System.out.print("Enter the ID of Developer you want to update :");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+
+                            development.updateName(checkID);
+                            development.showDeveloper();
+                        }
+                        case "C" -> {
+
+                            System.out.print("Enter the ID of Intern you want to update :");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+
+                            intern.updateName(checkID);
+                            intern.showIntern();
+                        }
+                        case "D" ->{
+                            System.out.println("\n");
+                            loopBreaker = false;
+                        }
+                        // add a loop breaker here to stop code when error comes.
+                        default -> System.out.println("Invalid Input");
+                    }
+                }while (loopBreaker);
+            }
+
+            //Total Salary
+            if (3 == choice) {
+                do {
+                    System.out.print("""
+                            Which department Salary you want to calculate :
+                            A -> Management
+                            B -> Development
+                            C -> Intern
+                            D -> Go back
+                            Type your Choice :\s
+                            """);
+
+                    String Select = input.nextLine().toUpperCase();
+                    switch (Select) {
+                        case "A" ->
+                                System.out.println("The Management Department Salary is : " + management.showSalary());
+                        case "B" ->
+                                System.out.println("The Development Department Salary is : " + development.showSalary());
+                        case "C" -> System.out.println("The Intern Department Salary is : " + intern.showSalary());
+                        case "D" ->{
+                            System.out.println("\n");
+                            loopBreaker = false;
+                        }
+                        default -> System.out.println("Invalid input");
+                    }
+                }while (loopBreaker);
+            }
+
+            // Remove Employee
+            if (4 == choice) {
+                do {
+                    System.out.print("""
+                            Enter the department You want to remove employee from :
+                            A -> Management
+                            B -> Development
+                            C -> Intern
+                            D -> Go back
+                            Type your Choice :\s
+                            """);
+
+                    String Select = input.nextLine().toUpperCase();
+                    switch (Select) {
+                        case "A" -> {
+
+                            System.out.println("Enter the ID number : ");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+                            management.removeName(checkID);
+
+                        }
+                        case "B" -> {
+
+                            System.out.println("Enter the ID number : ");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+                            development.removeName(checkID);
+
+                        }
+                        case "C" -> {
+                            System.out.println("Enter the ID number : ");
+                            int checkID = input.nextInt();
+                            input.nextLine();
+                            intern.removeName(checkID);
+                        }
+                        case "D" ->{
+                            System.out.println("\n");
+                            loopBreaker = false;
+                        }
+                        default -> System.out.println("Invalid Input");
+                    }
+                }while (loopBreaker);
+            }
+
+            // break loop
+            if (5 == choice) cut = false;
+        } while (cut);
     }
 }
